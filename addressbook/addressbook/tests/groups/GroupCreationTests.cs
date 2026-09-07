@@ -6,7 +6,7 @@ public class GroupCreationTests : TestBase
     [Test]
     public void GroupCreationTest()
     {
-        GroupData group = new GroupData("new name", "new header", "new footer");
+        GroupData group = new GroupData("name", "header", "footer");
         
         app.Group.Create(group);
     }

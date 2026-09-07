@@ -15,6 +15,7 @@ public class ApplicationManager
         Auth = new LoginHelper(this);
         Navigation = new NavigationHelper(this, baseURL);
         Group = new GroupHelper(this);
+        Contact = new ContactHelper(this);
     }
 
     public IWebDriver Driver { get; }
@@ -36,4 +37,6 @@ public class ApplicationManager
     public NavigationHelper Navigation { get; }
 
     public GroupHelper Group { get; }
+    
+    public ContactHelper Contact { get; }
 }
