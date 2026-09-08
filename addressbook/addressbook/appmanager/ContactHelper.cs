@@ -37,18 +37,10 @@ public class ContactHelper : HelperBase
     
     public ContactHelper FillContactForm(ContactData contact)
     {
-        driver.FindElement(By.Name("firstname")).Click();
-        driver.FindElement(By.Name("firstname")).Clear();
-        driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
-        driver.FindElement(By.Name("lastname")).Click();
-        driver.FindElement(By.Name("lastname")).Clear();
-        driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
-        driver.FindElement(By.Name("address")).Click();
-        driver.FindElement(By.Name("address")).Clear();
-        driver.FindElement(By.Name("address")).SendKeys(contact.Address);
-        driver.FindElement(By.Name("email")).Click();
-        driver.FindElement(By.Name("email")).Clear();
-        driver.FindElement(By.Name("email")).SendKeys(contact.EMail);
+        Type(By.Name("firstname"), contact.FirstName);
+        Type(By.Name("lastname"), contact.LastName);
+        Type(By.Name("address"), contact.Address);
+        Type(By.Name("email"), contact.EMail);
         return this;
     }
     
