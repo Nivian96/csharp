@@ -22,6 +22,9 @@ public class GroupHelper : HelperBase
     public GroupHelper Modify(int i, GroupData newData)
     {
         manager.Navigation.GoToGroupsPage();
+
+        GroupData group = new GroupData("name", "header", "footer");
+        EnsureGroupExists(group);
         
         SelectGroup(i);
         InitGroupModification();
@@ -34,6 +37,9 @@ public class GroupHelper : HelperBase
     public GroupHelper Remove(int i)
     {
         manager.Navigation.GoToGroupsPage();
+        
+        GroupData group = new GroupData("name", "header", "footer");
+        EnsureGroupExists(group);
         
         SelectGroup(i);
         RemoveGroup();
@@ -89,5 +95,13 @@ public class GroupHelper : HelperBase
     {
         driver.FindElement(By.Name("edit")).Click();
         return this;
+    }
+    
+    private void EnsureGroupExists(GroupData group)
+    {
+        if (!IsElementPresent(By.ClassName("group")))
+        {
+            Create(group);
+        }
     }
 }
