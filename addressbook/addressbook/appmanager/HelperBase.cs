@@ -8,7 +8,7 @@ public class HelperBase
     protected IWebDriver driver;
     protected ApplicationManager manager;
     
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
 
     public HelperBase(ApplicationManager manager)
     {

@@ -62,7 +62,7 @@ public class ContactHelper : HelperBase
     
     public ContactHelper SelectContact()
     {
-        driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+        wait.Until(d => d.FindElement(By.XPath("//img[@alt='Edit']"))).Click();
         return this;
     }
 
