@@ -1,7 +1,7 @@
 namespace addressbook;
 
 [TestFixture]
-public class GroupModificationTests : TestBase
+public class GroupModificationTests : AuthTestBase
 {
     [Test]
     public void GroupModificationTest()

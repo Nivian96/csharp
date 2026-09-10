@@ -20,6 +20,8 @@ public class ContactHelper : HelperBase
     
     public ContactHelper Modify(ContactData newData)
     {
+        manager.Navigation.GoToHomePage();
+        
         SelectContact();
         FillContactForm(newData);
         SubmitContactModification();
@@ -29,6 +31,8 @@ public class ContactHelper : HelperBase
 
     public ContactHelper Remove()
     {
+        manager.Navigation.GoToHomePage();
+        
         SelectContact();
         RemoveContact();
         ReturnToHomePage();

@@ -11,7 +11,7 @@ public class NavigationHelper : HelperBase
         this.baseURL = baseURL;
     }
     
-    public void GoToHomePage()
+    public void GoToStartPage()
     {
         driver.Navigate().GoToUrl(baseURL + "/addressbook/group.php");
     }
@@ -24,5 +24,10 @@ public class NavigationHelper : HelperBase
     public void GoToContactsPage()
     {
         driver.FindElement(By.LinkText("add new")).Click();
+    }
+
+    public void GoToHomePage()
+    {
+        driver.FindElement(By.LinkText("home")).Click();
     }
 }

@@ -1,6 +1,6 @@
 namespace addressbook;
 
-public class ContactModificationTests : TestBase
+public class ContactModificationTests : AuthTestBase
 {
     [Test]
     public void ContactModificationTest()
