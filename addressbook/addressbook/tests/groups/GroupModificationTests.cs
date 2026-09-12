@@ -8,6 +8,6 @@ public class GroupModificationTests : AuthTestBase
     {
         GroupData newData = new GroupData("new name", "new header", "new footer");
 
-        app.Group.Modify(1, newData);
+        app.Group.Modify(0, newData);
     }
 }

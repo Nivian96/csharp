@@ -81,7 +81,7 @@ public class GroupHelper : HelperBase
 
     public GroupHelper SelectGroup(int index)
     {
-        driver.FindElement(By.XPath($"//div[@id='content']/form/span[{index}]/input")).Click();
+        driver.FindElement(By.XPath($"//div[@id='content']/form/span[{index+1}]/input")).Click();
         return this;
     }
     
@@ -103,5 +103,17 @@ public class GroupHelper : HelperBase
         {
             Create(group);
         }
+    }
+
+    public List<GroupData> GetGroupList()
+    {
+        List<GroupData> groups = new List<GroupData>();
+        manager.Navigation.GoToGroupsPage();
+        ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+        foreach (IWebElement element in elements)
+        {
+            groups.Add(new GroupData(element.Text));
+        }
+        return groups;
     }
 }
