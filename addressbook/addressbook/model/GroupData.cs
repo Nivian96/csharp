@@ -8,7 +8,7 @@ public class GroupData(string name, string header = "", string footer = "") : IE
 
     public bool Equals(GroupData other)
     {
-        if (Object.ReferenceEquals(other, null))
+        if (ReferenceEquals(other, null))
         {
             return false;
         }
@@ -32,7 +32,7 @@ public class GroupData(string name, string header = "", string footer = "") : IE
     
     public int CompareTo(GroupData other)
     {
-        if (Object.ReferenceEquals(other, null))
+        if (ReferenceEquals(other, null))
         {
             return 1;
         }
