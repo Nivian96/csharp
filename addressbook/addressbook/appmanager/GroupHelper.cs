@@ -22,9 +22,6 @@ public class GroupHelper : HelperBase
     public GroupHelper Modify(int i, GroupData newData)
     {
         manager.Navigation.GoToGroupsPage();
-
-        GroupData group = new GroupData("name", "header", "footer");
-        EnsureGroupExists(group);
         
         SelectGroup(i);
         InitGroupModification();
@@ -37,9 +34,6 @@ public class GroupHelper : HelperBase
     public GroupHelper Remove(int i)
     {
         manager.Navigation.GoToGroupsPage();
-        
-        GroupData group = new GroupData("name", "header", "footer");
-        EnsureGroupExists(group);
         
         SelectGroup(i);
         RemoveGroup();
@@ -97,7 +91,7 @@ public class GroupHelper : HelperBase
         return this;
     }
     
-    private void EnsureGroupExists(GroupData group)
+    public void EnsureGroupExists(GroupData group)
     {
         if (!IsElementPresent(By.ClassName("group")))
         {

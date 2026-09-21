@@ -21,9 +21,6 @@ public class ContactHelper : HelperBase
     public ContactHelper Modify(ContactData newData)
     {
         manager.Navigation.GoToHomePage();
-
-        ContactData contact = new ContactData("firstname", "lastname", "address", "mail");
-        EnsureContactExists(contact);
         
         SelectContact();
         FillContactForm(newData);
@@ -35,9 +32,6 @@ public class ContactHelper : HelperBase
     public ContactHelper Remove()
     {
         manager.Navigation.GoToHomePage();
-
-        ContactData contact = new ContactData("firstname", "lastname", "address", "mail");
-        EnsureContactExists(contact);
         
         SelectContact();
         RemoveContact();
@@ -84,7 +78,7 @@ public class ContactHelper : HelperBase
         return this;
     }
     
-    private void EnsureContactExists(ContactData contact)
+    public void EnsureContactExists(ContactData contact)
     {
         if (wait.Until(d => d.FindElement(By.Id("search_count"))).Text == "0")
         {

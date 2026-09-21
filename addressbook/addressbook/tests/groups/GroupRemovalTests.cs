@@ -6,6 +6,9 @@ public class GroupRemovalTests : AuthTestBase
     [Test]
     public void GroupRemovalTest()
     {
+        GroupData group = new GroupData("name", "header", "footer");
+        app.Group.EnsureGroupExists(group);
+        
         List<GroupData> oldGroups = app.Group.GetGroupList();
         
         app.Group.Remove(0);
