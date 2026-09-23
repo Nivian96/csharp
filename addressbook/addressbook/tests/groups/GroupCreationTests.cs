@@ -11,6 +11,8 @@ public class GroupCreationTests : AuthTestBase
         List<GroupData> oldGroups = app.Group.GetGroupList();
         
         app.Group.Create(group);
+        
+        Assert.AreEqual(oldGroups.Count + 1, app.Group.GetGroupCount());
 
         List<GroupData> newGroups = app.Group.GetGroupList();
         oldGroups.Add(group);
@@ -27,6 +29,8 @@ public class GroupCreationTests : AuthTestBase
         List<GroupData> oldGroups = app.Group.GetGroupList();
         
         app.Group.Create(group);
+        
+        Assert.AreEqual(oldGroups.Count + 1, app.Group.GetGroupCount());
         
         List<GroupData> newGroups = app.Group.GetGroupList();
         oldGroups.Add(group);

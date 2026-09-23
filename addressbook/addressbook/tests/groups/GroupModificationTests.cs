@@ -14,6 +14,8 @@ public class GroupModificationTests : AuthTestBase
         GroupData newData = new GroupData("new name", "new header", "new footer");
         app.Group.Modify(0, newData);
         
+        Assert.AreEqual(oldGroups.Count, app.Group.GetGroupCount());
+        
         List<GroupData> newGroups = app.Group.GetGroupList();
         oldGroups[0].Name = newData.Name;
         oldGroups.Sort();

@@ -13,6 +13,8 @@ public class GroupRemovalTests : AuthTestBase
         
         app.Group.Remove(0);
         
+        Assert.AreEqual(oldGroups.Count - 1, app.Group.GetGroupCount());
+        
         List<GroupData> newGroups = app.Group.GetGroupList();
         
         oldGroups.RemoveAt(0);
