@@ -17,7 +17,13 @@ public class GroupRemovalTests : AuthTestBase
         
         List<GroupData> newGroups = app.Group.GetGroupList();
         
+        GroupData toBeRemoved = oldGroups[0];
         oldGroups.RemoveAt(0);
         Assert.AreEqual(oldGroups, newGroups);
+
+        foreach (GroupData eachGroup in newGroups)
+        {
+            Assert.AreNotEqual(eachGroup.Id, toBeRemoved.Id);
+        }
     }
 }

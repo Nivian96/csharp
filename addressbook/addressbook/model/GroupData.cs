@@ -5,6 +5,7 @@ public class GroupData(string name, string header = "", string footer = "") : IE
     public string Name { get; set; } = name;
     public string Header { get; set; } = header;
     public string Footer { get; set; } = footer;
+    public string Id { get; set; }
 
     public bool Equals(GroupData other)
     {
