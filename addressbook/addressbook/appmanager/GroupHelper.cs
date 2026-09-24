@@ -58,7 +58,7 @@ public class GroupHelper : HelperBase
     public GroupHelper SubmitGroupCreation()
     {
         driver.FindElement(By.Name("submit")).Click();
-        groupCash = null;
+        groupCache = null;
         return this;
     }
     
@@ -71,7 +71,7 @@ public class GroupHelper : HelperBase
     public GroupHelper RemoveGroup()
     {
         driver.FindElement(By.Name("delete")).Click();
-        groupCash = null;
+        groupCache = null;
         return this;
     }
 
@@ -84,7 +84,7 @@ public class GroupHelper : HelperBase
     private GroupHelper SubmitGroupModification()
     {
         driver.FindElement(By.Name("update")).Click();
-        groupCash = null;
+        groupCache = null;
         return this;
     }
 
@@ -102,25 +102,25 @@ public class GroupHelper : HelperBase
         }
     }
 
-    private List<GroupData> groupCash = null;
+    private List<GroupData> groupCache = null;
 
     public List<GroupData> GetGroupList()
     {
-        if (groupCash == null)
+        if (groupCache == null)
         {
-            groupCash = new List<GroupData>();
+            groupCache = new List<GroupData>();
             manager.Navigation.GoToGroupsPage();
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
             foreach (IWebElement element in elements)
             {
-                groupCash.Add(new GroupData(element.Text)
+                groupCache.Add(new GroupData(element.Text)
                 {
                     Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                 });
             }
         }
         
-        return new List<GroupData>(groupCash);
+        return new List<GroupData>(groupCache);
     }
 
     public int GetGroupCount()

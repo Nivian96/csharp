@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace addressbook;
 
@@ -18,22 +19,22 @@ public class ContactHelper : HelperBase
         return this;
     }
     
-    public ContactHelper Modify(ContactData newData)
+    public ContactHelper Modify(int i, ContactData newData)
     {
         manager.Navigation.GoToHomePage();
         
-        SelectContact();
+        SelectContact(i);
         FillContactForm(newData);
         SubmitContactModification();
         ReturnToHomePage();
         return this;
     }
 
-    public ContactHelper Remove()
+    public ContactHelper Remove(int i)
     {
         manager.Navigation.GoToHomePage();
         
-        SelectContact();
+        SelectContact(i);
         RemoveContact();
         ReturnToHomePage();
         return this;
@@ -51,6 +52,7 @@ public class ContactHelper : HelperBase
     public ContactHelper SubmitContactCreation()
     {
         driver.FindElement(By.XPath("//input[19]")).Click();
+        contactCache = null;
         return this;
     }
 
@@ -60,21 +62,23 @@ public class ContactHelper : HelperBase
         return this;
     }
     
-    public ContactHelper SelectContact()
+    public ContactHelper SelectContact(int index)
     {
-        wait.Until(d => d.FindElement(By.XPath("//img[@alt='Edit']"))).Click();
+        wait.Until(d => d.FindElement(By.XPath($"//tr[{index+2}]//img[@alt='Edit']"))).Click();
         return this;
     }
 
     public ContactHelper RemoveContact()
     {
         driver.FindElement(By.Name("delete")).Click();
+        contactCache = null;
         return this;
     }
     
     public ContactHelper SubmitContactModification()
     {
         driver.FindElement(By.Name("update")).Click();
+        contactCache = null;
         return this;
     }
     
@@ -84,5 +88,30 @@ public class ContactHelper : HelperBase
         {
             Create(contact);
         }
+    }
+
+    private List<ContactData> contactCache = null;
+
+    public List<ContactData> GetContactList()
+    {
+        if (contactCache == null)
+        {
+            contactCache = new List<ContactData>();
+            manager.Navigation.GoToStartPage();
+            IList<IWebElement> rows = driver.FindElements(By.CssSelector("tr[name='entry']"));
+            foreach (IWebElement row in rows)
+            {
+                IList<IWebElement> cells = row.FindElements(By.TagName("td"));
+                string lastName = cells[1].Text;
+                string firstName = cells[2].Text;
+                contactCache.Add(new ContactData(firstName, lastName));
+            }
+        }
+        return new List<ContactData>(contactCache);
+    }
+
+    public int GetContactCount()
+    {
+        return driver.FindElements(By.Name("entry")).Count;
     }
 }

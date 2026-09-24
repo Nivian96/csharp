@@ -1,6 +1,6 @@
 namespace addressbook;
 
-public class ContactData(string first_name, string last_name, string address, string e_mail): IEquatable<ContactData>, IComparable<ContactData>
+public class ContactData(string first_name, string last_name, string address = "", string e_mail = ""): IEquatable<ContactData>, IComparable<ContactData>
 {
     public string FirstName { get; set; } = first_name;
 
